@@ -1,5 +1,6 @@
 import { HOTSPOTS, ROOM_HINT } from '../copy';
 import { data, isDone, type SceneId } from '../state';
+import { WALL_PHOTOS } from '../photos';
 import * as art from './art-room';
 import * as props from './art-props';
 import { openSceneById } from '../scenes';
@@ -65,7 +66,7 @@ function buildSvg(): string {
     ${constellationLines()}
     ${props.gifFrame(`${ASSET_BASE}assets/gif/patrick.gif`)}
     ${props.lamp()}
-    ${props.polaroids(isDone('vanity'))}
+    ${props.polaroids(isDone('vanity'), WALL_PHOTOS)}
     ${art.vanity()}
     ${art.dresser()}
     ${props.recordPlayer(playing)}

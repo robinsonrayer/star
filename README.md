@@ -32,7 +32,8 @@ repository settings.
 | `src/room/art-props.ts` | polaroids, record player, plush, pillow, laptop, stickers |
 | `src/scenes/` | one file per scene |
 | `src/state.ts` | what the site remembers between visits |
+| `src/photos.ts` | which photos go where, and the fallback when one is missing |
 | `GLOSSARY.md` | the words this project uses in a specific way |
 | `PLAN.md` | scene specs, gate flow, palette, deploy steps |
 | `assets/audio/README.md` | how to add the voice note |
-| `assets/photos/README.md` | how to add photos, and when not to |
+| `assets/photos/README.md` | how photos are cropped, compressed and published |

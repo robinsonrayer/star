@@ -53,24 +53,29 @@ const cat: Motif = (x, y) => `<g transform="translate(${x} ${y})" stroke="var(--
 
 const MOTIFS: Motif[] = [heart, cassette, cupcake, moon, cat];
 
-function polaroid(x: number, y: number, rot: number, i: number): string {
+function polaroid(x: number, y: number, rot: number, i: number, src?: string): string {
   const motif = MOTIFS[i % MOTIFS.length]!;
   return `<g transform="rotate(${rot} ${x + 27} ${y + 30})">
     <rect x="${x}" y="${y}" width="54" height="60" rx="2" fill="#fffdf9" stroke="var(--ink)" stroke-width="1.1"/>
     <rect x="${x + 5}" y="${y + 5}" width="44" height="40" fill="var(--photo-${i % 3})"/>
     <g clip-path="none">${motif(x + 5, y + 5)}</g>
+    ${
+      src
+        ? `<image href="${src}" x="${x + 5}" y="${y + 5}" width="44" height="40" preserveAspectRatio="xMidYMid slice"/>`
+        : ''
+    }
     <rect x="${x + 5}" y="${y + 5}" width="44" height="40" fill="none" stroke="var(--ink)" stroke-width="0.6" opacity="0.35"/>
     <path d="M${x + 8} ${y + 52}h28" stroke="var(--rose)" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
     <circle cx="${x + 47}" cy="${y + 9}" r="2.4" fill="none" stroke="var(--gold)" stroke-width="1.2"/>
   </g>`;
 }
 
-export function polaroids(extraCard: boolean): string {
+export function polaroids(extraCard: boolean, photos: readonly string[] = []): string {
   return `<g id="polaroids">
-    ${polaroid(52, 104, -7, 0)}
-    ${polaroid(112, 92, 5, 1)}
-    ${polaroid(58, 172, 4, 2)}
-    ${polaroid(118, 168, -4, 3)}
+    ${polaroid(52, 104, -7, 0, photos[0])}
+    ${polaroid(112, 92, 5, 1, photos[1])}
+    ${polaroid(58, 172, 4, 2, photos[2])}
+    ${polaroid(118, 168, -4, 3, photos[3])}
     <circle cx="156" cy="100" r="2.8" fill="var(--gold)" opacity="0.8"/>
     ${extraCard ? lookCard(178, 150) : ''}
   </g>`;

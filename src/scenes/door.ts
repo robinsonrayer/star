@@ -1,5 +1,6 @@
 import { DOOR, FINAL_TRACK_URL, PLAYLIST_URL, VOICE_NOTE } from '../copy';
 import { markDone, visitedCount } from '../state';
+import { LETTER_PHOTO } from '../photos';
 import type { SceneHandle } from '../overlay';
 import { mountPlayer } from '../audio';
 import { actionButton, card, el, header } from './ui';
@@ -12,6 +13,9 @@ export function doorScene(handle: SceneHandle): void {
   const node = card(`
     ${header(DOOR.title, DOOR.intro)}
     ${visitedCount() < 3 ? `<p class="whisper">${DOOR.earlyLine}</p>` : ''}
+    <figure class="letter-photo">
+      <img src="${LETTER_PHOTO}" alt="a photo of you" width="498" height="370" loading="lazy" decoding="async" />
+    </figure>
     <div class="letter" aria-label="letter">
       ${DOOR.letter
         .map((line, i) => `<p class="letter__line" style="--i:${i}">${line}</p>`)

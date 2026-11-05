@@ -78,7 +78,10 @@ Two things are still empty and both are marked in `src/copy.ts`.
 2. `FINAL_TRACK_URL` is empty. The door falls back to her playlist. Paste a
    SoundCloud track URL to use one song instead.
 
-Photos are illustrated for now. See `assets/photos/README.md`.
+Photos are real: four on the wall and one above the letter. Originals stay in
+`assets/photos/`, which git ignores. The published copies in
+`public/assets/photos/` are cropped, stripped and compressed by hand. See
+`assets/photos/README.md`.
 
 ## Run it
 

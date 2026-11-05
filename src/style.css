@@ -908,6 +908,24 @@ a {
 
 /* --------------------------------------------------------------------- door */
 
+.letter-photo {
+  width: min(152px, 46%);
+  margin: 0 auto 12px;
+  padding: 5px 5px 13px;
+  background: #fffdf9;
+  border: 1.5px solid rgba(232, 206, 134, 0.75);
+  border-radius: 3px;
+  box-shadow: 0 18px 32px -18px rgba(0, 0, 0, 0.75);
+  transform: rotate(-1.8deg);
+}
+
+.letter-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
 .letter {
   display: flex;
   flex-direction: column;
