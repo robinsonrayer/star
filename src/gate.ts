@@ -62,7 +62,7 @@ export function runGate(root: HTMLElement, onEnter: () => void): void {
       </form>
       <p class="gate__feedback" role="status" aria-live="polite" data-feedback></p>
       <ol class="gate__steps" aria-hidden="true">
-        ${GATE_STEPS.map(() => '<li></li>').join('')}
+        ${GATE_STEPS.length > 1 ? GATE_STEPS.map(() => '<li></li>').join('') : ''}
       </ol>
     </div>
   </section>`;

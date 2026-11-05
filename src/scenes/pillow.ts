@@ -1,7 +1,9 @@
 import { PILLOW } from '../copy';
 import { markDone } from '../state';
 import type { SceneHandle } from '../overlay';
-import { actionButton, card, el, header } from './ui';
+import { actionButton, card, el, header, reduced } from './ui';
+
+const HEART = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6 4.6 13.4A4.9 4.9 0 0 1 12 6.9a4.9 4.9 0 0 1 7.4 6.5Z"/></svg>`;
 
 export function pillowScene(handle: SceneHandle): void {
   markDone('pillow');
@@ -33,10 +35,26 @@ export function pillowScene(handle: SceneHandle): void {
 
   const line = node.querySelector<HTMLElement>('[data-line]');
   const shape = node.querySelector<HTMLElement>('.pillow-art__shape');
+  const art = node.querySelector<HTMLElement>('.pillow-art');
+
+  /** A handful of small hearts, drifting up and out. */
+  const hearts = (): void => {
+    if (!art || reduced()) return;
+    for (let i = 0; i < 5; i += 1) {
+      const heart = el('span', 'heart');
+      heart.innerHTML = HEART;
+      heart.style.setProperty('--x', `${24 + Math.random() * 52}%`);
+      heart.style.setProperty('--drift', `${(Math.random() - 0.5) * 46}px`);
+      heart.style.setProperty('--scale', `${0.7 + Math.random() * 0.7}`);
+      heart.style.setProperty('--delay', `${i * 80}ms`);
+      art.append(heart);
+      heart.addEventListener('animationend', () => heart.remove());
+    }
+  };
 
   const actions = el('div', 'scene-actions');
   actions.append(
-    actionButton('squeeze it', () => {
+    actionButton(PILLOW.squeeze, () => {
       index = (index + 1) % PILLOW.lines.length;
       if (line) line.textContent = PILLOW.lines[index] ?? '';
       if (shape) {
@@ -44,6 +62,7 @@ export function pillowScene(handle: SceneHandle): void {
         void shape.getBoundingClientRect();
         shape.classList.add('is-hugged');
       }
+      hearts();
     }, 'primary'),
     actionButton('close', () => handle.close(), 'ghost'),
   );

@@ -3,13 +3,16 @@ import { data, markDone, save } from '../state';
 import type { SceneHandle } from '../overlay';
 import { actionButton, el, header, reduced } from './ui';
 
-/** A pentagon, drawn in order. Closing the loop gives the fifth line. */
+/**
+ * A pentagram, tapped in drawing order: top, bottom right, top left, top
+ * right, bottom left. The last tap closes the shape and gives the fifth line.
+ */
 const STARS: { x: number; y: number }[] = [
   { x: 196, y: 56 },
-  { x: 302, y: 132 },
   { x: 262, y: 274 },
-  { x: 128, y: 274 },
   { x: 90, y: 132 },
+  { x: 302, y: 132 },
+  { x: 128, y: 274 },
 ];
 
 const SKY_W = 390;
