@@ -249,6 +249,7 @@ export const LAPTOP = {
     "star@the-room:~$ It's your boyfriend",
     'star@the-room:~$ jksdlkjdwjdk',
   ],
+  after: '',
 };
 
 export const CUPCAKE = {
